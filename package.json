@@ -1,0 +1,25 @@
+{
+  "name": "websockets",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node --watch src/index.js",
+    "start": "node src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/prabuddhaxdev/Websockets.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/prabuddhaxdev/Websockets/issues"
+  },
+  "homepage": "https://github.com/prabuddhaxdev/Websockets#readme",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
