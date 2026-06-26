@@ -16,7 +16,13 @@ export const httpArcjet = arcjetKey
         }),
         detectBot({
           mode: arcjetMode,
-          allow: ["CATEGORY:SEARCH_ENGINE", "CATEGORY:PREVIEW"],
+          allow: [
+            "CATEGORY:SEARCH_ENGINE",
+            "CATEGORY:PREVIEW",
+            "CATEGORY:MONITOR",
+            "CATEGORY:TOOL",
+            "CATEGORY:PROGRAMMATIC",
+          ],
         }),
         slidingWindow({
           mode: arcjetMode,
@@ -36,7 +42,13 @@ export const wsArcjet = arcjetKey
         }),
         detectBot({
           mode: arcjetMode,
-          allow: ["CATEGORY:SEARCH_ENGINE", "CATEGORY:PREVIEW"],
+          allow: [
+            "CATEGORY:SEARCH_ENGINE",
+            "CATEGORY:PREVIEW",
+            "CATEGORY:MONITOR",
+            "CATEGORY:TOOL",
+            "CATEGORY:PROGRAMMATIC",
+          ],
         }),
         slidingWindow({
           mode: arcjetMode,
@@ -55,8 +67,12 @@ export function securityMiddleware() {
     try {
       const decision = await httpArcjet.protect(req);
       if (decision.isDenied()) {
+         console.log("Arcjet denial reason:", decision.reason);
         if (decision.reason.isRateLimit()) {
           return res.status(429).json({ error: "Rate Limit Exceeded" });
+        }
+        if (decision.reason.isBot()) {
+          return res.status(403).json({ error: "Forbidden: Bot detected" });
         }
         return res.status(403).json({ error: "Forbidden" });
       }
