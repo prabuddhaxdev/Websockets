@@ -62,7 +62,7 @@ export function securityMiddleware() {
       }
     } catch (error) {
       console.error("Arcject Connection Forbidden");
-      return res.status(403).json({ error: "Server Unavailable" });
+      return res.status(503).json({ error: "Service Unavailable" });
     }
 
     next();
