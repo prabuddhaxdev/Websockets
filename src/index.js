@@ -1,4 +1,5 @@
 import express from "express";
+import { securityMiddleware } from "./arcjet";
 const app = express();
 
 app.use(express.json());
@@ -9,6 +10,8 @@ const HOST = process.env.HOST || "0.0.0.0";
 app.get("/", (req, res) => {
   res.json({ message: "Hello from Express!" });
 });
+
+app.use(securityMiddleware());
 
 const { broadcastMatchCreated } = attachWebSocketServer(server);
 
