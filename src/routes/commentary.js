@@ -91,7 +91,7 @@ commentaryRouter.post("/", async (req, res) => {
         minute: commentaryData.minute,
         sequence: commentaryData.sequence,
         period: commentaryData.period,
-        eventType: eventType,
+        eventType: commentaryData.eventType,
         actor: commentaryData.actor,
         team: commentaryData.team,
         message: commentaryData.message,
